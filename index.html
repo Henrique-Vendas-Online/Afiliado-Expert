@@ -5,84 +5,157 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Guia Completo: Venda de eBooks como Afiliado</title>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
   <style>
+    * {
+      box-sizing: border-box;
+    }
+
     body {
       margin: 0;
       font-family: 'Inter', sans-serif;
       background-color: #ffffff;
       color: #1a1a1a;
       line-height: 1.6;
+      scroll-behavior: smooth;
     }
+
     header {
-      background-color: #0b57d0;
+      background: linear-gradient(135deg, #0b57d0, #1a73e8);
       color: #ffffff;
-      padding: 60px 20px;
+      padding: 80px 20px;
       text-align: center;
     }
+
     header h1 {
-      font-size: 2.5em;
-      margin-bottom: 10px;
+      font-size: 3em;
+      margin-bottom: 15px;
     }
+
     header p {
-      font-size: 1.1em;
+      font-size: 1.2em;
       max-width: 700px;
       margin: auto;
     }
+
     .container {
-      max-width: 1000px;
+      max-width: 1100px;
       margin: auto;
-      padding: 40px 20px;
+      padding: 50px 20px;
     }
+
+    section {
+      margin-bottom: 50px;
+    }
+
     h2 {
       color: #0b57d0;
-      font-size: 1.8em;
-      margin-bottom: 10px;
+      font-size: 2em;
+      margin-bottom: 20px;
     }
+
     ul {
-      padding-left: 20px;
+      padding-left: 0;
+      list-style: none;
     }
+
+    ul li {
+      margin-bottom: 12px;
+      padding-left: 28px;
+      position: relative;
+    }
+
+    ul li::before {
+      content: "check_circle";
+      font-family: "Material Icons";
+      color: #00c853;
+      font-size: 20px;
+      position: absolute;
+      left: 0;
+      top: 2px;
+    }
+
     .bonus, .testimonials {
       background: #f1f8ff;
-      border-left: 4px solid #1a73e8;
-      padding: 20px;
+      border-left: 5px solid #1a73e8;
+      padding: 25px;
+      border-radius: 10px;
       margin-top: 30px;
-      border-radius: 6px;
     }
+
     .cta {
       background-color: #0b57d0;
       color: #ffffff;
-      padding: 40px 20px;
+      padding: 50px 20px;
       text-align: center;
-      margin-top: 40px;
-      border-radius: 8px;
+      border-radius: 10px;
+      margin-top: 60px;
     }
+
     .cta h2 {
-      font-size: 2em;
-      margin-bottom: 10px;
+      font-size: 2.2em;
+      margin-bottom: 15px;
     }
-    .cta p {
-      font-size: 1.1em;
-      margin-bottom: 20px;
+
+    .cta form {
+      margin-top: 25px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
     }
-    .cta a {
+
+    .cta input {
+      padding: 12px 16px;
+      margin-bottom: 15px;
+      border: none;
+      border-radius: 6px;
+      font-size: 1em;
+      width: 100%;
+      max-width: 400px;
+    }
+
+    .cta button {
       background-color: #00c853;
       color: #fff;
       padding: 14px 28px;
       font-size: 1.1em;
       font-weight: bold;
-      border-radius: 6px;
-      text-decoration: none;
-      display: inline-block;
+      border-radius: 8px;
+      border: none;
+      cursor: pointer;
+      transition: background 0.3s ease;
     }
-    .cta a:hover {
+
+    .cta button:hover {
       background-color: #00b44e;
     }
+
     footer {
       text-align: center;
       font-size: 0.9em;
-      padding: 20px;
+      padding: 25px;
       background-color: #f4f4f4;
       color: #666;
+    }
+
+    .reveal {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: all 0.6s ease;
+    }
+
+    .reveal.active {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    @media (max-width: 768px) {
+      header h1 {
+        font-size: 2em;
+      }
+      .cta h2 {
+        font-size: 1.8em;
+      }
     }
   </style>
 </head>
@@ -90,44 +163,81 @@
 
 <header>
   <h1>Guia Completo: Como Lucrar com eBooks como Afiliado</h1>
-  <p>Aprenda passo a passo como construir um negócio digital rentável vendendo produtos digitais de terceiros — mesmo que você esteja começando do zero!</p>
+  <p>Descubra como transformar seu tempo livre em uma fonte de renda vendendo eBooks de forma inteligente e estratégica!</p>
 </header>
 
 <div class="container">
-  <h2>O que você vai encontrar neste eBook:</h2>
-  <ul>
-    <li>Por que trabalhar como afiliado</li>
-    <li>Por que eBooks são ideais para vender</li>
-    <li>As melhores plataformas para afiliados</li>
-    <li>Modelos de funis de vendas qualificados</li>
-  </ul>
+  <section class="reveal">
+    <h2>O que você vai encontrar neste eBook:</h2>
+    <ul>
+      <li>Por que trabalhar como afiliado</li>
+      <li>Por que eBooks são ideais para vender</li>
+      <li>As melhores plataformas para afiliados</li>
+      <li>Modelos de funis de vendas qualificados</li>
+    </ul>
+  </section>
 
-  <div class="bonus">
+  <section class="bonus reveal">
     <h3>Bônus Exclusivos:</h3>
     <ul>
       <li>Template de funil de vendas para afiliados</li>
       <li>Lista de eBooks com alta conversão</li>
       <li>Curso introdutório de copywriting</li>
     </ul>
-  </div>
+  </section>
 
-  <div class="testimonials">
+  <section class="testimonials reveal">
     <h3>Depoimentos de quem já leu:</h3>
     <p><strong>João M.:</strong> “Esse eBook me ajudou a estruturar minha primeira campanha. Já fiz minhas primeiras vendas!”</p>
     <p><strong>Ana S.:</strong> “Material direto ao ponto, com linguagem clara e estratégias realmente aplicáveis.”</p>
-  </div>
+  </section>
 
-  <div class="cta">
-    <h2>Garanta Agora Seu Acesso</h2>
-    <p>Você está a um clique de começar a gerar renda online com eBooks.</p>
-    <a href="https://SEULINKDEPAGAMENTO.com">Comprar Agora por R$39,90</a>
-    <p style="margin-top: 10px; font-size: 0.9em;">Pagamento seguro. Acesso imediato.</p>
+  <div class="cta reveal">
+    <h2>Receba um Conteúdo Exclusivo Antes de Comprar</h2>
+    <p>Insira seu nome e e-mail e receba gratuitamente um capítulo bônus do eBook.</p>
+    <form id="leadForm">
+      <input type="text" id="nome" placeholder="Seu nome" required />
+      <input type="email" id="email" placeholder="Seu e-mail" required />
+      <button type="submit">Quero Receber Agora</button>
+    </form>
+    <p style="margin-top: 15px; font-size: 0.9em;">Não enviamos spam. Você pode sair a qualquer momento.</p>
   </div>
 </div>
 
 <footer>
   &copy; 2025 Henrique Santos. Todos os direitos reservados.
 </footer>
+
+<script>
+  // Animação ao rolar
+  const reveals = document.querySelectorAll('.reveal');
+  window.addEventListener('scroll', () => {
+    for (const el of reveals) {
+      const top = el.getBoundingClientRect().top;
+      const visible = window.innerHeight * 0.85;
+      if (top < visible) el.classList.add('active');
+    }
+  });
+
+  // Validação e captura do formulário
+  document.getElementById("leadForm").addEventListener("submit", function(e) {
+    e.preventDefault();
+
+    const nome = document.getElementById("nome").value.trim();
+    const email = document.getElementById("email").value.trim();
+
+    if (nome === "" || email === "") {
+      alert("Por favor, preencha todos os campos.");
+      return;
+    }
+
+    // Aqui você pode integrar com Mailchimp, RD Station, LeadLovers, etc.
+    alert("Obrigado! Em breve você receberá seu conteúdo exclusivo por e-mail.");
+
+    // Limpar o formulário
+    this.reset();
+  });
+</script>
 
 </body>
 </html>
