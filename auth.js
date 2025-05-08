@@ -1,5 +1,5 @@
 // URL do Google Apps Script
-const sheet = SpreadsheetApp.openById('1_S8eZuW0y_ciWWkK9l_ZArFxYj8JWzhorVFRQVVYDe4').getSheetByName('Usuarios');
+const sheet = SpreadsheetApp.openById('https://script.google.com/macros/s/AKfycbypMkilPCCvpfFucPWL7___WCy0y__CN3Qn6XBgj2Q/dev').getSheetByName('Usuarios');
 
 // Função de login
 function doPost(e) {
