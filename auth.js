@@ -1,5 +1,3 @@
-// auth.js
-
 function cadastrarUsuario() {
   const nome = document.getElementById('nome').value;
   const email = document.getElementById('email').value;
@@ -18,7 +16,7 @@ function cadastrarUsuario() {
     return;
   }
 
-  usuarios.push({ nome, email, senha });
+  usuarios.push({ nome, email, senha, tipo: 'aluno' });
   localStorage.setItem('usuarios', JSON.stringify(usuarios));
 
   alert('Cadastro realizado com sucesso!');
@@ -36,26 +34,6 @@ function login() {
     localStorage.setItem('usuarioLogado', JSON.stringify(usuario));
     window.location.href = 'aulas.html';
   } else {
-    alert('E-mail ou senha inválidos.');
-  }
-}
 
-function verificarLogin() {
-  const usuarioLogado = JSON.parse(localStorage.getItem('usuarioLogado'));
-  if (!usuarioLogado) {
-    alert('Acesso negado. Faça login.');
-    window.location.href = 'login.html';
-  }
-}
-
-function exibirNomeUsuario() {
-  const usuarioLogado = JSON.parse(localStorage.getItem('usuarioLogado'));
-  if (usuarioLogado) {
-    document.getElementById('nomeUsuario').textContent = `Olá, ${usuarioLogado.nome}!`;
-  }
-}
-
-function logout() {
-  localStorage.removeItem('usuarioLogado');
-  window.location.href = 'login.html';
-}
+::contentReference[oaicite:0]{index=0}
+ 
