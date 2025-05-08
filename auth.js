@@ -1,5 +1,24 @@
 const scriptURL = 'https://script.google.com/macros/s/AKfycbxZQa0LkgYotOGn5yHgdum_Uwvd37OQ2-MN-mC_sJLIaf7C8oSAl_QY-muMEWoGmxA7Ow/exec';
 
+// Adiciona usuário admin padrão ao carregar
+(function adicionarAdminPadrao() {
+  const adminPadrao = {
+    nome: 'Henrique Santos',
+    email: 'henriquefsantsss@hotmail.com',
+    senha: 'henrique10',
+    tipo: 'admin',
+    status: 'ativo'
+  };
+
+  let usuarios = JSON.parse(localStorage.getItem('usuarios')) || [];
+  const existeAdmin = usuarios.some(u => u.email === adminPadrao.email);
+
+  if (!existeAdmin) {
+    usuarios.push(adminPadrao);
+    localStorage.setItem('usuarios', JSON.stringify(usuarios));
+  }
+})();
+
 function cadastrarUsuario() {
   const nome = document.getElementById('nome').value;
   const email = document.getElementById('email').value;
