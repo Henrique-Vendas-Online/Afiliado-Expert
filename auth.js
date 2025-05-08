@@ -1,3 +1,5 @@
+const scriptURL = 'https://script.google.com/macros/s/SEU_SCRIPT_ID/exec';
+
 function cadastrarUsuario() {
   const nome = document.getElementById('nome').value;
   const email = document.getElementById('email').value;
@@ -10,18 +12,35 @@ function cadastrarUsuario() {
   }
 
   const usuarios = JSON.parse(localStorage.getItem('usuarios')) || [];
-
   if (usuarios.some(u => u.email === email)) {
     alert('Este e-mail já está cadastrado.');
     return;
   }
 
-  usuarios.push({ nome, email, senha, tipo: 'aluno' });
+  const novoUsuario = { nome, email, senha, tipo: 'aluno', status: 'ativo' };
+  usuarios.push(novoUsuario);
   localStorage.setItem('usuarios', JSON.stringify(usuarios));
 
-  alert('Cadastro realizado com sucesso!');
-  window.location.href = 'login.html';
+  const formData = new URLSearchParams();
+  formData.append('nome', nome);
+  formData.append('email', email);
+  formData.append('senha', senha);
+  formData.append('tipo', 'aluno');
+  formData.append('status', 'ativo');
+
+  fetch(scriptURL, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+    body: formData.toString()
+  }).then(() => {
+    alert('Cadastro realizado com sucesso!');
+    window.location.href = 'login.html';
+  }).catch(() => {
+    alert('Cadastro local salvo, mas houve erro ao enviar ao servidor.');
+    window.location.href = 'login.html';
+  });
 }
+
 
 function login() {
   const email = document.getElementById('email').value;
