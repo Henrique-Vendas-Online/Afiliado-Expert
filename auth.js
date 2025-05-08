@@ -1,4 +1,4 @@
-const scriptURL = 'https://script.google.com/macros/s/SEU_SCRIPT_ID/exec';
+const scriptURL = 'https://script.google.com/macros/s/AKfycbxZQa0LkgYotOGn5yHgdum_Uwvd37OQ2-MN-mC_sJLIaf7C8oSAl_QY-muMEWoGmxA7Ow/exec';
 
 function cadastrarUsuario() {
   const nome = document.getElementById('nome').value;
