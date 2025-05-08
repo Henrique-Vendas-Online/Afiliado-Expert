@@ -1,40 +1,22 @@
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
-  <meta charset="UTF-8" />
-  <title>Aulas - Área do Aluno</title>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet">
-  <style>
-    body {
-      font-family: 'Inter', sans-serif;
-      background: #f9f9f9;
-      padding: 30px;
-    }
-    h1 {
-      color: #1a73e8;
-    }
-    .aula {
-      background: white;
-      border-left: 5px solid #1a73e8;
-      margin-bottom: 20px;
-      padding: 20px;
-      border-radius: 8px;
-    }
-  </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Conteúdo das Aulas</title>
+  <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-
-<h1>Bem-vindo à Área do Aluno</h1>
-
-<div class="aula">
-  <h2>Módulo 1 - Introdução</h2>
-  <a href="https://link-do-video.com">▶️ Assistir Aula</a>
-</div>
-
-<div class="aula">
-  <h2>Módulo 2 - Estratégias</h2>
-  <a href="https://link-do-video.com">▶️ Assistir Aula</a>
-</div>
-
+  <div class="content-container">
+    <h1 id="nomeUsuario">Carregando...</h1>
+    <p>Bem-vindo à área de cursos! Aqui estão seus conteúdos exclusivos.</p>
+    <!-- Conteúdo das aulas -->
+    <button onclick="logout()">Sair</button>
+  </div>
+  <script src="auth.js"></script>
+  <script>
+    verificarLogin();
+    exibirNomeUsuario();
+  </script>
 </body>
 </html>
