@@ -5,10 +5,32 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Login - Área do Aluno</title>
   <style>
-    body { font-family: 'Arial', sans-serif; background: #f4f7fc; color: #333; display: flex; justify-content: center; align-items: center; height: 100vh; margin: 0; }
-    .login-container { background: white; padding: 30px; border-radius: 8px; box-shadow: 0 4px 8px rgba(0,0,0,0.1); width: 100%; max-width: 400px; }
-    h2 { text-align: center; color: #4CAF50; margin-bottom: 20px; }
-    .form-group { margin-bottom: 15px; }
+    body {
+      font-family: 'Arial', sans-serif;
+      background: #f4f7fc;
+      color: #333;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+    }
+    .login-container {
+      background: white;
+      padding: 30px;
+      border-radius: 8px;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+      width: 100%;
+      max-width: 400px;
+    }
+    h2 {
+      text-align: center;
+      color: #4CAF50;
+      margin-bottom: 20px;
+    }
+    .form-group {
+      margin-bottom: 15px;
+    }
     input[type="text"], input[type="password"] {
       width: 100%;
       padding: 10px;
@@ -26,9 +48,17 @@
       cursor: pointer;
       font-size: 16px;
     }
-    button:hover { background: #45a049; }
-    .forgot-password { text-align: center; margin-top: 10px; }
-    .forgot-password a { color: #4CAF50; text-decoration: none; }
+    button:hover {
+      background: #45a049;
+    }
+    .forgot-password {
+      text-align: center;
+      margin-top: 10px;
+    }
+    .forgot-password a {
+      color: #4CAF50;
+      text-decoration: none;
+    }
   </style>
 </head>
 <body>
@@ -50,6 +80,32 @@
   </div>
 
   <script>
-    document.getElementById('loginForm').addEventListener('submit', function(e
-::contentReference[oaicite:16]{index=16}
- 
+    document.getElementById('loginForm').addEventListener('submit', function (e) {
+      e.preventDefault();
+
+      const usuarioInput = document.getElementById('usuario').value.trim().toLowerCase();
+      const senha = document.getElementById('senha').value;
+
+      const usuarios = JSON.parse(localStorage.getItem('usuarios')) || [];
+
+      const usuario = usuarios.find(u =>
+        (u.email.toLowerCase() === usuarioInput || u.nome.toLowerCase() === usuarioInput) &&
+        u.senha === senha
+      );
+
+      if (usuario) {
+        if (usuario.status === 'inativo') {
+          alert('Este usuário está inativo.');
+        } else {
+          localStorage.setItem('usuarioLogado', JSON.stringify(usuario));
+          window.location.href = 'aulas.html';
+        }
+      } else {
+        alert('Usuário ou senha inválidos.');
+      }
+    });
+  </script>
+
+  <script src="auth.js"></script>
+</body>
+</html>
