@@ -80,11 +80,33 @@
     p a:hover {
       text-decoration: underline;
     }
+
+    /* Mensagens de erro e sucesso */
+    .message {
+      text-align: center;
+      margin-top: 20px;
+      padding: 10px;
+      border-radius: 4px;
+    }
+
+    .success {
+      background-color: #d4edda;
+      color: #155724;
+    }
+
+    .error {
+      background-color: #f8d7da;
+      color: #721c24;
+    }
   </style>
 </head>
 <body>
   <div class="container">
     <h2>Cadastro de Usuário</h2>
+    
+    <!-- Mensagem de sucesso ou erro -->
+    <div id="message" class="message" style="display: none;"></div>
+
     <form onsubmit="event.preventDefault(); cadastrarUsuario();">
       <div class="form-group">
         <label for="nome">Nome Completo</label>
@@ -111,5 +133,59 @@
     
     <p>Já tem conta? <a href="login.html">Faça login</a></p>
   </div>
+
+  <script>
+    // Função para exibir a mensagem de sucesso ou erro
+    function exibirMensagem(mensagem, tipo) {
+      const messageDiv = document.getElementById('message');
+      messageDiv.style.display = 'block';
+      messageDiv.textContent = mensagem;
+      messageDiv.classList.remove('success', 'error');
+      messageDiv.classList.add(tipo);
+    }
+
+    // Alteração da função de cadastro para exibir mensagens de sucesso ou erro
+    function cadastrarUsuario() {
+      const nome = document.getElementById('nome').value;
+      const email = document.getElementById('email').value;
+      const senha = document.getElementById('senha').value;
+      const confirmarSenha = document.getElementById('confirmarSenha').value;
+
+      // Verifica se as senhas são iguais
+      if (senha !== confirmarSenha) {
+        exibirMensagem('As senhas não coincidem.', 'error');
+        return;
+      }
+
+      // Cria os dados a serem enviados para o Google Apps Script
+      const formData = new URLSearchParams();
+      formData.append('nome', nome);
+      formData.append('email', email);
+      formData.append('senha', senha);
+      formData.append('tipo', 'aluno');
+      formData.append('status', 'ativo');
+
+      // Envia os dados para o Google Apps Script via POST
+      fetch(scriptURL, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+        body: formData.toString()
+      })
+      .then(response => response.json())
+      .then(data => {
+        if (data.status === 'success') {
+          exibirMensagem('Cadastro realizado com sucesso!', 'success');
+          setTimeout(() => {
+            window.location.href = 'login.html'; // Redireciona para a página de login
+          }, 2000); // Atraso de 2 segundos para o usuário ver a mensagem
+        } else {
+          exibirMensagem(data.message, 'error');
+        }
+      })
+      .catch(() => {
+        exibirMensagem('Erro ao realizar o cadastro. Tente novamente.', 'error');
+      });
+    }
+  </script>
 </body>
 </html>
