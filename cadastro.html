@@ -1,23 +1,22 @@
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Cadastro - Curso de Aulas</title>
-  <link rel="stylesheet" href="styles.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Cadastro de Usuário</title>
+  <script src="auth.js"></script>
 </head>
 <body>
-  <div class="form-container">
+  <div>
     <h2>Cadastro</h2>
-    <form id="formCadastro" onsubmit="event.preventDefault(); cadastrarUsuario();">
-      <input type="text" id="nome" placeholder="Nome completo" required>
-      <input type="email" id="email" placeholder="E-mail" required>
-      <input type="password" id="senha" placeholder="Senha" required>
-      <input type="password" id="confirmarSenha" placeholder="Confirmar senha" required>
+    <form onsubmit="event.preventDefault(); cadastrarUsuario();">
+      <input type="text" id="nome" placeholder="Nome completo" required><br>
+      <input type="email" id="email" placeholder="E-mail" required><br>
+      <input type="password" id="senha" placeholder="Senha" required><br>
+      <input type="password" id="confirmarSenha" placeholder="Confirmar senha" required><br>
       <button type="submit">Cadastrar</button>
     </form>
-    <p>Já tem uma conta? <a href="login.html">Faça login</a></p>
+    <p>Já tem conta? <a href="login.html">Faça login</a></p>
   </div>
-  <script src="auth.js"></script>
 </body>
 </html>
