@@ -1,22 +1,14 @@
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Conteúdo das Aulas</title>
-  <link rel="stylesheet" href="styles.css">
-</head>
-<body>
-  <div class="content-container">
-    <h1 id="nomeUsuario">Carregando...</h1>
-    <p>Bem-vindo à área de cursos! Aqui estão seus conteúdos exclusivos.</p>
-    <!-- Conteúdo das aulas -->
-    <button onclick="logout()">Sair</button>
-  </div>
   <script src="auth.js"></script>
-  <script>
-    verificarLogin();
-    exibirNomeUsuario();
-  </script>
+</head>
+<body onload="verificarLogin(); exibirNomeUsuario();">
+  <h1 id="nomeUsuario">Carregando...</h1>
+  <p>Bem-vindo à sua área de aulas. Aqui está seu conteúdo exclusivo.</p>
+  <button onclick="logout()">Sair</button>
 </body>
 </html>
