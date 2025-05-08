@@ -1,18 +1,55 @@
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Login - Área do Aluno</title>
-  <script src="auth.js"></script>
+  <style>
+    body { font-family: 'Arial', sans-serif; background: #f4f7fc; color: #333; display: flex; justify-content: center; align-items: center; height: 100vh; margin: 0; }
+    .login-container { background: white; padding: 30px; border-radius: 8px; box-shadow: 0 4px 8px rgba(0,0,0,0.1); width: 100%; max-width: 400px; }
+    h2 { text-align: center; color: #4CAF50; margin-bottom: 20px; }
+    .form-group { margin-bottom: 15px; }
+    input[type="text"], input[type="password"] {
+      width: 100%;
+      padding: 10px;
+      margin: 5px 0;
+      border: 1px solid #ddd;
+      border-radius: 4px;
+    }
+    button {
+      width: 100%;
+      padding: 10px;
+      background: #4CAF50;
+      color: white;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      font-size: 16px;
+    }
+    button:hover { background: #45a049; }
+    .forgot-password { text-align: center; margin-top: 10px; }
+    .forgot-password a { color: #4CAF50; text-decoration: none; }
+  </style>
 </head>
 <body>
-  <h2>Login</h2>
-  <form onsubmit="event.preventDefault(); login();">
-    <input type="email" id="email" placeholder="E-mail" required><br>
-    <input type="password" id="senha" placeholder="Senha" required><br>
-    <button type="submit">Entrar</button>
-  </form>
-  <p>Não tem conta? <a href="cadastro.html">Cadastre-se</a></p>
-</body>
-</html>
+
+  <div class="login-container">
+    <h2>Login</h2>
+    <form id="loginForm">
+      <div class="form-group">
+        <input type="text" id="usuario" placeholder="E-mail ou Nome de Usuário" required>
+      </div>
+      <div class="form-group">
+        <input type="password" id="senha" placeholder="Senha" required>
+      </div>
+      <button type="submit">Entrar</button>
+    </form>
+    <div class="forgot-password">
+      <p><a href="esqueci-senha.html">Esqueci a senha</a></p>
+    </div>
+  </div>
+
+  <script>
+    document.getElementById('loginForm').addEventListener('submit', function(e
+::contentReference[oaicite:16]{index=16}
+ 
