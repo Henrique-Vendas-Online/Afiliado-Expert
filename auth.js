@@ -1,6 +1,6 @@
 const scriptURL = 'https://script.google.com/macros/s/AKfycbwJt0vMHyKXTcaoznXOC2Q-rqzDUfSW-mIdmZI5q6QlzSZxt25wUNLAoge_YKkg4zD0/exec';
 
-// Adiciona usuário admin padrão ao carregar
+// Função para adicionar um admin padrão ao carregar
 (function adicionarAdminPadrao() {
   const adminPadrao = {
     nome: 'Henrique Santos',
@@ -19,48 +19,43 @@ const scriptURL = 'https://script.google.com/macros/s/AKfycbwJt0vMHyKXTcaoznXOC2
   }
 })();
 
+// Função para cadastrar o usuário
 function cadastrarUsuario() {
   const nome = document.getElementById('nome').value;
   const email = document.getElementById('email').value;
   const senha = document.getElementById('senha').value;
   const confirmarSenha = document.getElementById('confirmarSenha').value;
 
+  // Verifica se as senhas são iguais
   if (senha !== confirmarSenha) {
     alert('As senhas não coincidem.');
     return;
   }
 
-  const usuarios = JSON.parse(localStorage.getItem('usuarios')) || [];
-  if (usuarios.some(u => u.email === email)) {
-    alert('Este e-mail já está cadastrado.');
-    return;
-  }
-
-  const novoUsuario = { nome, email, senha, tipo: 'aluno', status: 'ativo' };
-  usuarios.push(novoUsuario);
-  localStorage.setItem('usuarios', JSON.stringify(usuarios));
-
+  // Cria os dados a serem enviados para o Google Apps Script
   const formData = new URLSearchParams();
   formData.append('nome', nome);
   formData.append('email', email);
   formData.append('senha', senha);
   formData.append('tipo', 'aluno');
   formData.append('status', 'ativo');
-  formData.append('data', new Date().toISOString()); // Adicionando a data do cadastro
 
+  // Envia os dados para o Google Apps Script via POST
   fetch(scriptURL, {
     method: 'POST',
     headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
     body: formData.toString()
-  }).then(() => {
+  })
+  .then(() => {
     alert('Cadastro realizado com sucesso!');
-    window.location.href = 'login.html';
-  }).catch(() => {
-    alert('Cadastro local salvo, mas houve erro ao enviar ao servidor.');
-    window.location.href = 'login.html';
+    window.location.href = 'login.html'; // Redireciona para a página de login
+  })
+  .catch(() => {
+    alert('Erro ao realizar o cadastro.');
   });
 }
 
+// Função de login
 function login() {
   const email = document.getElementById('email').value;
   const senha = document.getElementById('senha').value;
@@ -76,6 +71,7 @@ function login() {
   }
 }
 
+// Função para verificar se o usuário está logado
 function verificarLogin() {
   const usuarioLogado = JSON.parse(localStorage.getItem('usuarioLogado'));
   if (!usuarioLogado) {
@@ -84,6 +80,7 @@ function verificarLogin() {
   }
 }
 
+// Função para exibir o nome do usuário logado
 function exibirNomeUsuario() {
   const usuarioLogado = JSON.parse(localStorage.getItem('usuarioLogado'));
   if (usuarioLogado) {
@@ -91,11 +88,13 @@ function exibirNomeUsuario() {
   }
 }
 
+// Função de logout
 function logout() {
   localStorage.removeItem('usuarioLogado');
   window.location.href = 'login.html';
 }
 
+// Função para verificar se o usuário é admin
 function verificarAdmin() {
   const usuario = JSON.parse(localStorage.getItem('usuarioLogado'));
   if (!usuario || usuario.tipo !== 'admin') {
@@ -104,6 +103,7 @@ function verificarAdmin() {
   }
 }
 
+// Função para carregar a lista de usuários
 function carregarUsuarios() {
   const usuarios = JSON.parse(localStorage.getItem('usuarios')) || [];
   const container = document.getElementById('usuariosContainer');
@@ -120,6 +120,7 @@ function carregarUsuarios() {
   });
 }
 
+// Função para promover um usuário a admin
 function promoverUsuario(index) {
   const usuarios = JSON.parse(localStorage.getItem('usuarios'));
   usuarios[index].tipo = 'admin';
@@ -128,6 +129,7 @@ function promoverUsuario(index) {
   carregarUsuarios();
 }
 
+// Função para alternar o status do usuário (ativo/inativo)
 function alternarStatus(index) {
   const usuarios = JSON.parse(localStorage.getItem('usuarios'));
   usuarios[index].status = usuarios[index].status === 'ativo' ? 'inativo' : 'ativo';
