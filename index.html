@@ -1,80 +1,278 @@
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Guia Completo: Venda de eBooks como Afiliado</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
   <style>
-    /* Reset de estilos */
-    * { margin: 0; padding: 0; box-sizing: border-box; }
-    body { font-family: 'Arial', sans-serif; background: #f4f7fc; color: #333; }
-    h1 { color: #4CAF50; text-align: center; margin-top: 20px; }
-    .container { max-width: 600px; margin: 20px auto; padding: 20px; background: white; border-radius: 8px; box-shadow: 0 4px 8px rgba(0,0,0,0.1); }
-    .form-group { margin-bottom: 15px; }
-    input[type="text"], input[type="email"] {
-      width: 100%;
-      padding: 10px;
-      margin: 5px 0;
-      border: 1px solid #ddd;
-      border-radius: 4px;
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: 'Inter', sans-serif;
+      background-color: #ffffff;
+      color: #1a1a1a;
+      line-height: 1.6;
+      scroll-behavior: smooth;
     }
-    button {
-      width: 100%;
-      padding: 10px;
-      background: #4CAF50;
-      color: white;
+    header {
+      background: linear-gradient(135deg, #0b57d0, #1a73e8);
+      color: #ffffff;
+      padding: 80px 20px;
+      text-align: center;
+    }
+    header h1 {
+      font-size: 3em;
+      margin-bottom: 15px;
+    }
+    header p {
+      font-size: 1.2em;
+      max-width: 700px;
+      margin: auto;
+    }
+    .container {
+      max-width: 1100px;
+      margin: auto;
+      padding: 50px 20px;
+    }
+    section {
+      margin-bottom: 50px;
+    }
+    h2 {
+      color: #0b57d0;
+      font-size: 2em;
+      margin-bottom: 20px;
+    }
+    ul {
+      padding-left: 0;
+      list-style: none;
+    }
+    ul li {
+      margin-bottom: 12px;
+      padding-left: 28px;
+      position: relative;
+    }
+    ul li::before {
+      content: "check_circle";
+      font-family: "Material Icons";
+      color: #00c853;
+      font-size: 20px;
+      position: absolute;
+      left: 0;
+      top: 2px;
+    }
+    .bonus, .testimonials {
+      background: #f1f8ff;
+      border-left: 5px solid #1a73e8;
+      padding: 25px;
+      border-radius: 10px;
+      margin-top: 30px;
+    }
+    .cta {
+      background-color: #0b57d0;
+      color: #ffffff;
+      padding: 50px 20px;
+      text-align: center;
+      border-radius: 10px;
+      margin-top: 60px;
+    }
+    .cta h2 {
+      font-size: 2.2em;
+      margin-bottom: 15px;
+    }
+    .cta form {
+      margin-top: 25px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    .cta input {
+      padding: 12px 16px;
+      margin-bottom: 15px;
       border: none;
-      border-radius: 4px;
-      cursor: pointer;
-      font-size: 16px;
+      border-radius: 6px;
+      font-size: 1em;
+      width: 100%;
+      max-width: 400px;
     }
-    button:hover { background: #45a049; }
-    footer { text-align: center; margin-top: 20px; font-size: 14px; }
+    .cta button {
+      background-color: #00c853;
+      color: #fff;
+      padding: 14px 28px;
+      font-size: 1.1em;
+      font-weight: bold;
+      border-radius: 8px;
+      border: none;
+      cursor: pointer;
+      transition: background 0.3s ease;
+    }
+    .cta button:hover {
+      background-color: #00b44e;
+    }
+    .buy-section {
+      background-color: #fefefe;
+      border: 2px solid #0b57d0;
+      padding: 40px;
+      border-radius: 12px;
+      text-align: center;
+      margin-top: 60px;
+    }
+    .buy-section h2 {
+      font-size: 2em;
+      color: #0b57d0;
+      margin-bottom: 10px;
+    }
+    .buy-section p {
+      font-size: 1.1em;
+      margin-bottom: 25px;
+    }
+    .buy-button {
+      background-color: #1a73e8;
+      color: white;
+      text-decoration: none;
+      padding: 15px 30px;
+      font-size: 1.2em;
+      font-weight: bold;
+      border-radius: 8px;
+      display: inline-block;
+      transition: background 0.3s ease;
+    }
+    .buy-button:hover {
+      background-color: #0b57d0;
+    }
+    footer {
+      text-align: center;
+      font-size: 0.9em;
+      padding: 25px;
+      background-color: #f4f4f4;
+      color: #666;
+    }
+    .reveal {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: all 0.6s ease;
+    }
+    .reveal.active {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    @media (max-width: 768px) {
+      header h1 { font-size: 2em; }
+      .cta h2 { font-size: 1.8em; }
+    }
   </style>
 </head>
 <body>
 
+<header>
   <h1>Guia Completo: Como Lucrar com eBooks como Afiliado</h1>
+  <p>Descubra como transformar seu tempo livre em uma fonte de renda vendendo eBooks de forma inteligente e estratégica!</p>
+</header>
 
-  <div class="container">
-    <p>Transforme seu tempo livre em uma fonte de renda vendendo eBooks de forma inteligente e estratégica!</p>
+<div class="container">
+  <section class="reveal">
+    <h2>O que você vai encontrar neste eBook:</h2>
+    <ul>
+      <li>Por que trabalhar como afiliado</li>
+      <li>Por que eBooks são ideais para vender</li>
+      <li>As melhores plataformas para afiliados</li>
+      <li>Modelos de funis de vendas qualificados</li>
+    </ul>
+  </section>
+
+  <section class="bonus reveal">
+    <h3>Bônus Exclusivos:</h3>
+    <ul>
+      <li>Template de funil de vendas para afiliados</li>
+      <li>Lista de eBooks com alta conversão</li>
+      <li>Curso introdutório de copywriting</li>
+    </ul>
+  </section>
+
+  <section class="testimonials reveal">
+    <h3>Depoimentos de quem já leu:</h3>
+    <p><strong>João M.:</strong> “Esse eBook me ajudou a estruturar minha primeira campanha. Já fiz minhas primeiras vendas!”</p>
+    <p><strong>Ana S.:</strong> “Material direto ao ponto, com linguagem clara e estratégias realmente aplicáveis.”</p>
+  </section>
+
+  <div class="cta reveal">
+    <h2>Receba um Conteúdo Exclusivo Antes de Comprar</h2>
+    <p>Insira seu nome e e-mail e receba gratuitamente um capítulo bônus do eBook.</p>
     <form id="leadForm">
-      <div class="form-group">
-        <input type="text" id="nome" placeholder="Nome completo" required>
-      </div>
-      <div class="form-group">
-        <input type="email" id="email" placeholder="E-mail" required>
-      </div>
-      <button type="submit">Quero saber mais</button>
+      <input type="text" id="nome" placeholder="Seu nome" required />
+      <input type="email" id="email" placeholder="Seu e-mail" required />
+      <button type="submit">Quero Receber Agora</button>
     </form>
+    <p style="margin-top: 15px; font-size: 0.9em;">Não enviamos spam. Você pode sair a qualquer momento.</p>
   </div>
 
-  <footer>
-    &copy; 2025 Henrique Santos. Todos os direitos reservados.
-  </footer>
+  <section class="buy-section reveal">
+    <h2>Pronto para começar a lucrar com eBooks?</h2>
+    <p>Garanta agora o seu acesso completo ao guia e receba todos os bônus exclusivos.</p>
+    <a href="https://pay.kiwify.com.br/ZTTU0By" target="_blank" class="buy-button">Quero Comprar Agora</a>
+  </section>
 
-  <script>
-    document.getElementById('leadForm').addEventListener('submit', function(e) {
-      e.preventDefault();
-      const nome = document.getElementById('nome').value;
-      const email = document.getElementById('email').value;
+  <section class="buy-section reveal">
+    <h2>Já comprou o curso?</h2>
+    <p>Acesse sua área de aulas agora mesmo:</p>
+    <a href="login.html" class="buy-button">Tenho uma conta</a>
+  </section>
+</div>
 
-      const formData = new URLSearchParams();
-      formData.append('nome', nome);
-      formData.append('email', email);
-      formData.append('senha', ''); // Senha não capturada
-      formData.append('tipo', 'aluno');
-      formData.append('status', 'ativo');
+<footer>
+  &copy; 2025 Henrique Santos. Todos os direitos reservados.
+</footer>
 
-      fetch('https://script.google.com/macros/s/AKfycbxZQa0LkgYotOGn5yHgdum_Uwvd37OQ2-MN-mC_sJLIaf7C8oSAl_QY-muMEWoGmxA7Ow/exec', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-        body: formData.toString()
-      })
-      .then(() => alert('Cadastro realizado com sucesso!'))
-      .catch(() => alert('Erro ao enviar dados.'));
+<script>
+  // Animação ao rolar
+  const reveals = document.querySelectorAll('.reveal');
+  window.addEventListener('scroll', () => {
+    for (const el of reveals) {
+      const top = el.getBoundingClientRect().top;
+      const visible = window.innerHeight * 0.85;
+      if (top < visible) el.classList.add('active');
+    }
+  });
+
+  // Envio de formulário para Google Sheets
+  document.getElementById("leadForm").addEventListener("submit", function(e) {
+    e.preventDefault();
+
+    const nome = document.getElementById("nome").value.trim();
+    const email = document.getElementById("email").value.trim();
+
+    if (!nome || !email) {
+      alert("Por favor, preencha todos os campos.");
+      return;
+    }
+
+    const formData = new URLSearchParams();
+    formData.append("nome", nome);
+    formData.append("email", email);
+    formData.append("senha", ""); // não usado neste formulário
+    formData.append("tipo", "aluno");
+    formData.append("status", "ativo");
+
+    fetch("https://script.google.com/macros/s/AKfycbxZQa0LkgYotOGn5yHgdum_Uwvd37OQ2-MN-mC_sJLIaf7C8oSAl_QY-muMEWoGmxA7Ow/exec", {
+      method: "POST",
+      headers: { "Content-Type": "application/x-www-form-urlencoded" },
+      body: formData.toString()
+    })
+    .then(response => {
+      if (response.ok) {
+        alert("Cadastro realizado com sucesso!");
+        document.getElementById("leadForm").reset();
+      } else {
+        alert("Erro ao enviar. Tente novamente.");
+      }
+    })
+    .catch(error => {
+      alert("Erro de conexão. Tente novamente mais tarde.");
+      console.error("Erro:", error);
     });
-  </script>
+  });
+</script>
 
 </body>
 </html>
