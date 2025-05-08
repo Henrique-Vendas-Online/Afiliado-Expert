@@ -7,14 +7,16 @@
   <script src="auth.js"></script>
 </head>
 <body>
-  <h2>Cadastro</h2>
-  <form onsubmit="event.preventDefault(); cadastrarUsuario();">
-    <input type="text" id="nome" placeholder="Nome completo" required><br>
-    <input type="email" id="email" placeholder="E-mail" required><br>
-    <input type="password" id="senha" placeholder="Senha" required><br>
-    <input type="password" id="confirmarSenha" placeholder="Confirmar senha" required><br>
-    <button type="submit">Cadastrar</button>
-  </form>
-  <p>Já tem conta? <a href="login.html">Faça login</a></p>
+  <div>
+    <h2>Cadastro</h2>
+    <form onsubmit="event.preventDefault(); cadastrarUsuario();">
+      <input type="text" id="nome" placeholder="Nome completo" required><br>
+      <input type="email" id="email" placeholder="E-mail" required><br>
+      <input type="password" id="senha" placeholder="Senha" required><br>
+      <input type="password" id="confirmarSenha" placeholder="Confirmar senha" required><br>
+      <button type="submit">Cadastrar</button>
+    </form>
+    <p>Já tem conta? <a href="login.html">Faça login</a></p>
+  </div>
 </body>
 </html>
