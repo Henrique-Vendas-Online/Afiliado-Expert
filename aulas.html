@@ -38,11 +38,38 @@
   <p>Bem-vindo à sua área de aulas. Aqui está seu conteúdo exclusivo.</p>
 
   <button onclick="logout()">Sair</button>
-  <button class="admin-button" onclick="window.location.href = 'admin.html'">Área Administrativa</button>
+  <button class="admin-button" id="adminButton" onclick="window.location.href = 'admin.html'">Área Administrativa</button>
 
   <div id="conteudoAulas">
     <!-- Área de inserção de aulas e lista de aulas aparecerá aqui -->
   </div>
+
+  <script>
+    function verificarLogin() {
+      const usuarioLogado = JSON.parse(localStorage.getItem('usuarioLogado'));
+      if (!usuarioLogado) {
+        alert('Acesso negado. Faça login.');
+        window.location.href = 'login.html';
+      }
+    }
+
+    function exibirNomeUsuario() {
+      const usuarioLogado = JSON.parse(localStorage.getItem('usuarioLogado'));
+      if (usuarioLogado) {
+        document.getElementById('nomeUsuario').textContent = `Olá, ${usuarioLogado.nome}!`;
+        
+        // Exibir botão de admin apenas para usuários do tipo admin
+        if (usuarioLogado.tipo !== 'admin') {
+          document.getElementById('adminButton').style.display = 'none';
+        }
+      }
+    }
+
+    function logout() {
+      localStorage.removeItem('usuarioLogado');
+      window.location.href = 'login.html';
+    }
+  </script>
 
 </body>
 </html>
