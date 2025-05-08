@@ -1,4 +1,4 @@
-const scriptURL = 'https://script.google.com/macros/s/AKfycbypMkilPCCvpfFucPWL7___WCy0y__CN3Qn6XBgj2Q/dev';
+const scriptURL = 'https://script.google.com/macros/s/AKfycbzBvwgPctgkNZV9ySAHVZGYrMUcP__LCHJgcFypkPog/dev';
 
 // Função para adicionar um admin padrão ao carregar
 (function adicionarAdminPadrao() {
