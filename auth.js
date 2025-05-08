@@ -47,6 +47,28 @@ function cadastrarUsuario() {
 
   usuarios.push(novoUsuario);
   localStorage.setItem('usuarios', JSON.stringify(usuarios));
-  alert('Cadastro realizado com sucesso!');
-  window.location.href = 'login.html';
+
+  // Enviar os dados para o Google Sheets
+  const formData = new URLSearchParams();
+  formData.append('nome', nome);
+  formData.append('email', email);
+  formData.append('senha', senha);
+  formData.append('tipo', 'aluno');
+  formData.append('status', 'ativo');
+
+  // Envio dos dados para o Google Sheets via Google Apps Script
+  fetch(scriptURL, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+    body: formData.toString()
+  })
+  .then(response => {
+    alert('Cadastro realizado com sucesso!');
+    window.location.href = 'login.html';
+  })
+  .catch(error => {
+    console.error('Erro ao enviar dados para a planilha:', error);
+    alert('Cadastro local salvo, mas houve um erro ao enviar os dados ao servidor.');
+    window.location.href = 'login.html';
+  });
 }
