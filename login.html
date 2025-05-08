@@ -59,12 +59,26 @@
       color: #4CAF50;
       text-decoration: none;
     }
+    .message {
+      text-align: center;
+      margin-top: 10px;
+      padding: 10px;
+      border-radius: 4px;
+    }
+    .error {
+      background-color: #f8d7da;
+      color: #721c24;
+    }
   </style>
 </head>
 <body>
 
   <div class="login-container">
     <h2>Login</h2>
+    
+    <!-- Mensagem de erro -->
+    <div id="message" class="message" style="display: none;"></div>
+
     <form id="loginForm">
       <div class="form-group">
         <input type="text" id="usuario" placeholder="E-mail ou Nome de Usuário" required>
@@ -87,24 +101,48 @@
       const usuarioInput = document.getElementById('usuario').value.trim().toLowerCase();
       const senha = document.getElementById('senha').value;
 
-      const usuarios = JSON.parse(localStorage.getItem('usuarios')) || [];
+      // Limpar mensagens anteriores
+      const messageDiv = document.getElementById('message');
+      messageDiv.style.display = 'none';
 
-      const usuario = usuarios.find(u =>
-        (u.email.toLowerCase() === usuarioInput || u.nome.toLowerCase() === usuarioInput) &&
-        u.senha === senha
-      );
+      // Preparando dados para envio ao Google Apps Script
+      const formData = new URLSearchParams();
+      formData.append('usuario', usuarioInput);
+      formData.append('senha', senha);
 
-      if (usuario) {
-        if (usuario.status === 'inativo') {
-          alert('Este usuário está inativo.');
+      // Envia os dados para o Google Apps Script via POST
+      fetch(scriptURL, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+        body: formData.toString()
+      })
+      .then(response => response.json())
+      .then(data => {
+        if (data.status === 'success') {
+          // Verifica se o status do usuário está ativo
+          if (data.usuario.status === 'inativo') {
+            mostrarMensagem('Este usuário está inativo.', 'error');
+          } else {
+            localStorage.setItem('usuarioLogado', JSON.stringify(data.usuario));
+            window.location.href = 'aulas.html'; // Redireciona para a página principal
+          }
         } else {
-          localStorage.setItem('usuarioLogado', JSON.stringify(usuario));
-          window.location.href = 'aulas.html';
+          mostrarMensagem('Usuário ou senha inválidos.', 'error');
         }
-      } else {
-        alert('Usuário ou senha inválidos.');
-      }
+      })
+      .catch(() => {
+        mostrarMensagem('Erro ao realizar o login. Tente novamente.', 'error');
+      });
     });
+
+    // Função para exibir mensagens de erro
+    function mostrarMensagem(mensagem, tipo) {
+      const messageDiv = document.getElementById('message');
+      messageDiv.style.display = 'block';
+      messageDiv.textContent = mensagem;
+      messageDiv.classList.remove('error');
+      messageDiv.classList.add(tipo);
+    }
   </script>
 
   <script src="auth.js"></script>
