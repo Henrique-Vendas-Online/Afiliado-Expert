@@ -10,13 +10,20 @@ const scriptURL = 'https://script.google.com/macros/s/AKfycbwJt0vMHyKXTcaoznXOC2
     status: 'ativo'
   };
 
-  let usuarios = JSON.parse(localStorage.getItem('usuarios')) || [];
-  const existeAdmin = usuarios.some(u => u.email === adminPadrao.email);
-
-  if (!existeAdmin) {
-    usuarios.push(adminPadrao);
-    localStorage.setItem('usuarios', JSON.stringify(usuarios));
-  }
+  fetch(scriptURL, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+    body: new URLSearchParams({
+      nome: adminPadrao.nome,
+      email: adminPadrao.email,
+      senha: adminPadrao.senha,
+      tipo: adminPadrao.tipo,
+      status: adminPadrao.status
+    }).toString()
+  })
+  .then(response => response.json())
+  .then(data => console.log('Admin padrão adicionado:', data))
+  .catch(error => console.error('Erro ao adicionar admin:', error));
 })();
 
 // Função para cadastrar o usuário
@@ -46,9 +53,14 @@ function cadastrarUsuario() {
     headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
     body: formData.toString()
   })
-  .then(() => {
-    alert('Cadastro realizado com sucesso!');
-    window.location.href = 'login.html'; // Redireciona para a página de login
+  .then(response => response.json())
+  .then(data => {
+    if (data.status === 'success') {
+      alert('Cadastro realizado com sucesso!');
+      window.location.href = 'login.html'; // Redireciona para a página de login
+    } else {
+      alert(data.message);
+    }
   })
   .catch(() => {
     alert('Erro ao realizar o cadastro.');
@@ -60,15 +72,27 @@ function login() {
   const email = document.getElementById('email').value;
   const senha = document.getElementById('senha').value;
 
-  const usuarios = JSON.parse(localStorage.getItem('usuarios')) || [];
-  const usuario = usuarios.find(u => u.email === email && u.senha === senha);
+  const formData = new URLSearchParams();
+  formData.append('email', email);
+  formData.append('senha', senha);
 
-  if (usuario) {
-    localStorage.setItem('usuarioLogado', JSON.stringify(usuario));
-    window.location.href = 'aulas.html';
-  } else {
-    alert('E-mail ou senha inválidos.');
-  }
+  fetch(scriptURL + '?action=login', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+    body: formData.toString()
+  })
+  .then(response => response.json())
+  .then(data => {
+    if (data.status === 'success') {
+      localStorage.setItem('usuarioLogado', JSON.stringify(data.usuario));
+      window.location.href = 'aulas.html';
+    } else {
+      alert(data.message);
+    }
+  })
+  .catch(() => {
+    alert('Erro ao realizar o login.');
+  });
 }
 
 // Função para verificar se o usuário está logado
@@ -105,18 +129,26 @@ function verificarAdmin() {
 
 // Função para carregar a lista de usuários
 function carregarUsuarios() {
-  const usuarios = JSON.parse(localStorage.getItem('usuarios')) || [];
-  const container = document.getElementById('usuariosContainer');
-  container.innerHTML = '<h3>Usuários Cadastrados</h3>';
+  fetch(scriptURL + '?action=listarUsuarios', {
+    method: 'GET'
+  })
+  .then(response => response.json())
+  .then(data => {
+    const container = document.getElementById('usuariosContainer');
+    container.innerHTML = '<h3>Usuários Cadastrados</h3>';
 
-  usuarios.forEach((u, index) => {
-    const div = document.createElement('div');
-    div.innerHTML = `
-      <p><strong>${u.nome}</strong> (${u.email}) - <em>${u.tipo}</em> - Status: <strong>${u.status}</strong></p>
-      <button onclick="promoverUsuario(${index})">Promover para Admin</button>
-      <button onclick="alternarStatus(${index})">${u.status === 'ativo' ? 'Inativar' : 'Ativar'}</button>
-    `;
-    container.appendChild(div);
+    data.usuarios.forEach((u, index) => {
+      const div = document.createElement('div');
+      div.innerHTML = `
+        <p><strong>${u.nome}</strong> (${u.email}) - <em>${u.tipo}</em> - Status: <strong>${u.status}</strong></p>
+        <button onclick="promoverUsuario(${index})">Promover para Admin</button>
+        <button onclick="alternarStatus(${index})">${u.status === 'ativo' ? 'Inativar' : 'Ativar'}</button>
+      `;
+      container.appendChild(div);
+    });
+  })
+  .catch(() => {
+    alert('Erro ao carregar usuários.');
   });
 }
 
